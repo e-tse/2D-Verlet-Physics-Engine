@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tsexeth/Documents/physics_sim/VerletObject.cpp
+VerletObject.h
+/home/tsexeth/Documents/physics_sim/VerletObject.h
+common.h
+/home/tsexeth/Documents/physics_sim/common.h
+iostream
+-
+SFML/Graphics.hpp
+-
+string
+-
+
+/home/tsexeth/Documents/physics_sim/VerletObject.h
+common.h
+/home/tsexeth/Documents/physics_sim/common.h
+iostream
+-
+SFML/Graphics.hpp
+-
+string
+-
+
+/home/tsexeth/Documents/physics_sim/common.h
+iostream
+-
+

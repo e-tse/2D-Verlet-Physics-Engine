@@ -1,0 +1,3 @@
+/home/tsexeth/Documents/physics_sim/build/CMakeFiles/rebuild_cache.dir
+/home/tsexeth/Documents/physics_sim/build/CMakeFiles/edit_cache.dir
+/home/tsexeth/Documents/physics_sim/build/CMakeFiles/Physics_Sim.dir
