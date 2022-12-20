@@ -1,59 +1,57 @@
-// VerletObject.h
-// Date: 12/04/2022
+// Ball.h
+// Last Update: 12/20/2022
 // Author: Ethan Tse
-// Defines the VerletObject class
+// Defines the Ball class
 #pragma once
-#include "VerletObject.h"
-#include "common.h"
+#include "Ball.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <string>
 
 //Constructor
-VerletObject::VerletObject()
+Ball::Ball()
 {
     shape = sf::CircleShape(radius, 100);
-    SetPosition(sf::Vector2f(0.0f, 0.0f));
-    SetVelocity(sf::Vector2f(0.0f, 0.0f));
-    SetRadius(5.0f);
-    SetColor(sf::Color::White);
-    SetForce(sf::Vector2f(0.0f, 0.0f));
-    SetMass(5.0f);
+    setPosition(sf::Vector2f(0.0f, 0.0f));
+    setVelocity(sf::Vector2f(0.0f, 0.0f));
+    setRadius(5.0f);
+    setColor(sf::Color::White);
+    setForce(sf::Vector2f(0.0f, 0.0f));
+    setMass(5.0f);
+
     
 };
 
 //Constructor with parameters
-VerletObject::VerletObject(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Color color)
+Ball::Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Color color)
 {
     shape = sf::CircleShape(radius, 100);
-    SetPosition(position);
-    SetVelocity(velocity);
-    SetRadius(radius);
-    SetColor(color);
-    SetForce(sf::Vector2f(0.0f, 0.0f));
-    SetMass(mass);
-
+    setPosition(position);
+    setVelocity(velocity);
+    setRadius(radius);
+    setColor(color);
+    setForce(sf::Vector2f(0.0f, 0.0f));
+    setMass(mass);
 };
 
-VerletObject::VerletObject(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Vector2f force, sf::Color color){
+Ball::Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Vector2f force, sf::Color color){
     shape = sf::CircleShape(radius, 100);
-    SetPosition(position);
-    SetVelocity(velocity);
-    SetRadius(radius);
-    SetColor(color);
-    SetForce(force);
-    SetMass(mass);
-    
+    setPosition(position);
+    setVelocity(velocity);
+    setRadius(radius);
+    setColor(color);
+    setForce(force);
+    setMass(mass);
 
 };
 
 //Destructor
-VerletObject::~VerletObject(){
+Ball::~Ball(){
 
 };
 
 //Update function
-void VerletObject::Update(float dt){
+void Ball::update(float dt){
     
     //using verlet integration, update position
     position.x += velocity.x * dt + 0.5 * force.x * dt * dt / mass;
@@ -65,64 +63,64 @@ void VerletObject::Update(float dt){
 }
 
 //Draw function
-void VerletObject::Draw(sf::RenderWindow &window){
+void Ball::draw(sf::RenderWindow &window){
     window.draw(shape);
 };
 
 //Getters
-sf::Vector2f VerletObject::GetPosition(){
+sf::Vector2f Ball::getPosition(){
     return position;
 }
-float VerletObject::GetRadius(){
+float Ball::getRadius(){
     return radius;
 };
-sf::Color VerletObject::GetColor(){
+sf::Color Ball::getColor(){
     return color;
 };
 
-sf::Vector2f VerletObject::GetForce(){
+sf::Vector2f Ball::getForce(){
     return force;
 };
-float VerletObject::GetMass(){
+float Ball::getMass(){
     return mass;
 };
-sf::Vector2f VerletObject::GetVelocity(){
+sf::Vector2f Ball::getVelocity(){
     return velocity;
 };
 
 
 
 //Setters
-void VerletObject::SetPosition(sf::Vector2f _position){
+void Ball::setPosition(sf::Vector2f _position){
     position = _position;
     shape.setPosition(_position);
 };
-void VerletObject::SetRadius(float _radius){
+void Ball::setRadius(float _radius){
     radius = _radius;
     shape.setRadius(_radius);
     shape.setOrigin(_radius, _radius);
 };
-void VerletObject::SetColor(sf::Color _color){
+void Ball::setColor(sf::Color _color){
     color = _color;
     shape.setFillColor(_color);
 };
-void VerletObject::SetForce(sf::Vector2f _force){  
+void Ball::setForce(sf::Vector2f _force){  
     force = _force;
 };
-void VerletObject::SetMass(float _mass){
+void Ball::setMass(float _mass){
     mass = _mass;
 };
-void VerletObject::SetVelocity(sf::Vector2f _velocity){
+void Ball::setVelocity(sf::Vector2f _velocity){
     velocity = _velocity;
 };
 
-void VerletObject::ApplyForce(sf::Vector2f _force){
+void Ball::applyForce(sf::Vector2f _force){
     force.x += _force.x;
     force.y += _force.y;
 };
 
 
-std::string VerletObject::ToString(){
+std::string Ball::toString(){
     return "Position: " + std::to_string(position.x) + ", " + std::to_string(position.y) + 
     ", Velocity: " + std::to_string(velocity.x) + ", " + std::to_string(velocity.y) + 
     ", Radius: " + std::to_string(radius) + 

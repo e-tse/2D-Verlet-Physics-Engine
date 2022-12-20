@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Physics_Sim.dir/VerletObject.cpp.o"
+  "CMakeFiles/Physics_Sim.dir/Ball.cpp.o"
+  "CMakeFiles/Physics_Sim.dir/Container.cpp.o"
+  "CMakeFiles/Physics_Sim.dir/VectorMath.cpp.o"
   "CMakeFiles/Physics_Sim.dir/driver.cpp.o"
   "Physics_Sim"
   "Physics_Sim.pdb"
