@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tsexeth/Documents/physics_sim
+CMAKE_SOURCE_DIR = /home/tsexeth/Documents/physics_sim/src
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/tsexeth/Documents/physics_sim/build
@@ -58,30 +58,30 @@ include CMakeFiles/Physics_Sim.dir/progress.make
 include CMakeFiles/Physics_Sim.dir/flags.make
 
 CMakeFiles/Physics_Sim.dir/driver.cpp.o: CMakeFiles/Physics_Sim.dir/flags.make
-CMakeFiles/Physics_Sim.dir/driver.cpp.o: ../driver.cpp
+CMakeFiles/Physics_Sim.dir/driver.cpp.o: /home/tsexeth/Documents/physics_sim/src/driver.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tsexeth/Documents/physics_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Physics_Sim.dir/driver.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Physics_Sim.dir/driver.cpp.o -c /home/tsexeth/Documents/physics_sim/driver.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Physics_Sim.dir/driver.cpp.o -c /home/tsexeth/Documents/physics_sim/src/driver.cpp
 
 CMakeFiles/Physics_Sim.dir/driver.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Physics_Sim.dir/driver.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tsexeth/Documents/physics_sim/driver.cpp > CMakeFiles/Physics_Sim.dir/driver.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tsexeth/Documents/physics_sim/src/driver.cpp > CMakeFiles/Physics_Sim.dir/driver.cpp.i
 
 CMakeFiles/Physics_Sim.dir/driver.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Physics_Sim.dir/driver.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tsexeth/Documents/physics_sim/driver.cpp -o CMakeFiles/Physics_Sim.dir/driver.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tsexeth/Documents/physics_sim/src/driver.cpp -o CMakeFiles/Physics_Sim.dir/driver.cpp.s
 
 CMakeFiles/Physics_Sim.dir/VerletObject.cpp.o: CMakeFiles/Physics_Sim.dir/flags.make
-CMakeFiles/Physics_Sim.dir/VerletObject.cpp.o: ../VerletObject.cpp
+CMakeFiles/Physics_Sim.dir/VerletObject.cpp.o: /home/tsexeth/Documents/physics_sim/src/VerletObject.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tsexeth/Documents/physics_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Physics_Sim.dir/VerletObject.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Physics_Sim.dir/VerletObject.cpp.o -c /home/tsexeth/Documents/physics_sim/VerletObject.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Physics_Sim.dir/VerletObject.cpp.o -c /home/tsexeth/Documents/physics_sim/src/VerletObject.cpp
 
 CMakeFiles/Physics_Sim.dir/VerletObject.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Physics_Sim.dir/VerletObject.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tsexeth/Documents/physics_sim/VerletObject.cpp > CMakeFiles/Physics_Sim.dir/VerletObject.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tsexeth/Documents/physics_sim/src/VerletObject.cpp > CMakeFiles/Physics_Sim.dir/VerletObject.cpp.i
 
 CMakeFiles/Physics_Sim.dir/VerletObject.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Physics_Sim.dir/VerletObject.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tsexeth/Documents/physics_sim/VerletObject.cpp -o CMakeFiles/Physics_Sim.dir/VerletObject.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tsexeth/Documents/physics_sim/src/VerletObject.cpp -o CMakeFiles/Physics_Sim.dir/VerletObject.cpp.s
 
 # Object files for target Physics_Sim
 Physics_Sim_OBJECTS = \
@@ -112,6 +112,6 @@ CMakeFiles/Physics_Sim.dir/clean:
 .PHONY : CMakeFiles/Physics_Sim.dir/clean
 
 CMakeFiles/Physics_Sim.dir/depend:
-	cd /home/tsexeth/Documents/physics_sim/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tsexeth/Documents/physics_sim /home/tsexeth/Documents/physics_sim /home/tsexeth/Documents/physics_sim/build /home/tsexeth/Documents/physics_sim/build /home/tsexeth/Documents/physics_sim/build/CMakeFiles/Physics_Sim.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/tsexeth/Documents/physics_sim/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tsexeth/Documents/physics_sim/src /home/tsexeth/Documents/physics_sim/src /home/tsexeth/Documents/physics_sim/build /home/tsexeth/Documents/physics_sim/build /home/tsexeth/Documents/physics_sim/build/CMakeFiles/Physics_Sim.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Physics_Sim.dir/depend
 

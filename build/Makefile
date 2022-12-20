@@ -48,7 +48,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tsexeth/Documents/physics_sim
+CMAKE_SOURCE_DIR = /home/tsexeth/Documents/physics_sim/src
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/tsexeth/Documents/physics_sim/build
