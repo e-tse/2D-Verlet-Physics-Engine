@@ -18,7 +18,7 @@ Ball::Ball()
     setColor(sf::Color::White);
     setForce(sf::Vector2f(0.0f, 0.0f));
     setMass(5.0f);
-
+    setCoefficientOfRestitution(1.0f);
     
 };
 
@@ -32,9 +32,10 @@ Ball::Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mas
     setColor(color);
     setForce(sf::Vector2f(0.0f, 0.0f));
     setMass(mass);
+    setCoefficientOfRestitution(1.0f);
 };
 
-Ball::Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Vector2f force, sf::Color color){
+Ball::Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Vector2f force, float coefficientOfRestitution, sf::Color color){
     shape = sf::CircleShape(radius, 100);
     setPosition(position);
     setVelocity(velocity);
@@ -42,6 +43,7 @@ Ball::Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mas
     setColor(color);
     setForce(force);
     setMass(mass);
+    setCoefficientOfRestitution(coefficientOfRestitution);
 
 };
 
@@ -88,6 +90,14 @@ sf::Vector2f Ball::getVelocity(){
     return velocity;
 };
 
+float Ball::getCoefficientOfRestitution(){
+    return coefficientOfRestitution;
+};
+
+float Ball::getInverseMass(){
+    return inverse_mass;
+};
+
 
 
 //Setters
@@ -109,9 +119,14 @@ void Ball::setForce(sf::Vector2f _force){
 };
 void Ball::setMass(float _mass){
     mass = _mass;
+    inverse_mass = 1.0f / mass;
 };
 void Ball::setVelocity(sf::Vector2f _velocity){
     velocity = _velocity;
+};
+
+void Ball::setCoefficientOfRestitution(float _coefficientOfRestitution){
+    coefficientOfRestitution = _coefficientOfRestitution;
 };
 
 void Ball::applyForce(sf::Vector2f _force){

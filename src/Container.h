@@ -26,8 +26,7 @@ class Container
         //Getters
         std::vector<Ball> getBallVector();
 
-        //collisions
-        void checkCollisions();
+        
     
         
         //toString function
@@ -35,8 +34,11 @@ class Container
     private:
         //vector of balls
         std::vector<Ball> balls_vector;
-        inline bool isColliding(Ball a, Ball b);
-        inline void resolveCollision(Ball &a, Ball &b);
+        
+        //collisions
+        void checkCollisions();
+        bool isColliding(Ball a, Ball b);
+        void resolveCollision(Ball &a, Ball &b);
 
 
 };

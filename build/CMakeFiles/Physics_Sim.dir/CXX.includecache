@@ -42,27 +42,9 @@ SFML/Graphics.hpp
 string
 -
 
-/home/tsexeth/Documents/physics_sim/src/VectorMath.cpp
-VectorMath.h
-/home/tsexeth/Documents/physics_sim/src/VectorMath.h
-math.h
--
-
 /home/tsexeth/Documents/physics_sim/src/VectorMath.h
 iostream
 -
 SFML/Graphics.hpp
 -
-
-/home/tsexeth/Documents/physics_sim/src/driver.cpp
-iostream
--
-SFML/Graphics.hpp
--
-Ball.h
-/home/tsexeth/Documents/physics_sim/src/Ball.h
-string
--
-Container.h
-/home/tsexeth/Documents/physics_sim/src/Container.h
 

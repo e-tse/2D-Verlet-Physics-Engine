@@ -9,6 +9,7 @@ namespace VectorMath{
     float distanceSquared(sf::Vector2f a, sf::Vector2f b);
     float distance(sf::Vector2f a, sf::Vector2f b);
     sf::Vector2f normalize(sf::Vector2f a);
+    float dotProduct(sf::Vector2f a, sf::Vector2f b);
 }
 
 

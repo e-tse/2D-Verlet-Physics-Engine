@@ -13,15 +13,21 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
 
     Ball one;
+    Ball two;
     std::cout << one.toString() << std::endl;
     // one.SetRadius(10.0f);
     // std::cout << one.ToString() << std::endl;
     // one.SetPosition(sf::Vector2f(-5.0f, -5.0f));
-    one.setVelocity(sf::Vector2f(50.0f, 0.0f));
-    one.setForce(sf::Vector2f(0.0f, 9.8f*5.0f));
 
+    one.setPosition(sf::Vector2f(0.0f, 100.0f));
+    two.setPosition(sf::Vector2f(300.0f, 100.0f));
+
+    one.setVelocity(sf::Vector2f(50.0f, 0.0f));
+    two.setVelocity(sf::Vector2f(-50.0f, 0.0f));
+    one.setColor(sf::Color::Red);
     Container container;
     container.addBall(one);
+    container.addBall(two);
 
     float dt = 0.01f;
     while (window.isOpen())

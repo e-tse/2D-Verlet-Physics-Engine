@@ -28,6 +28,7 @@ void Container::update(float dt)
     {
         balls_vector[i].update(dt);
     }
+    checkCollisions();
 };
 
 //draw
@@ -64,7 +65,7 @@ std::string Container::toString()
 
 
 
-inline bool Container::isColliding(Ball a, Ball b)
+bool Container::isColliding(Ball a, Ball b)
 {
     float r = a.getRadius() + b.getRadius();
     r *= r;
@@ -90,9 +91,32 @@ void Container::checkCollisions(){
     }               
 }
 
-inline void Container::resolveCollision(Ball& a, Ball& b){
+void Container::resolveCollision(Ball& a, Ball& b){
     //Resolve collions
-    sf::Vector2f normal = a.getPosition() - b.getPosition();
-    normal = VectorMath::normalize(normal);
+    sf::Vector2f collision_normal = a.getPosition() - b.getPosition();
+    collision_normal = VectorMath::normalize(collision_normal);
+
+    //move balls out of each other
+    float penetration = a.getRadius() + b.getRadius() - VectorMath::distance(a.getPosition(), b.getPosition());
+    a.setPosition(a.getPosition() + collision_normal * penetration * 0.5f);
+    b.setPosition(b.getPosition() - collision_normal * penetration * 0.5f);
+
+    //Equation taken from 
+    //https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/physicstutorials/5collisionresponse/Physics%20-%20Collision%20Response.pdf
+    float e = a.getCoefficientOfRestitution() * b.getCoefficientOfRestitution();
+    e=0.0f;
+    sf::Vector2f relativeVelocity = a.getVelocity() - b.getVelocity();
+    float j = -(1 + e) * VectorMath::dotProduct(relativeVelocity, collision_normal);
+    j /= a.getInverseMass() + b.getInverseMass();
+
+    sf::Vector2f impulse = collision_normal * j;
+    a.setVelocity(a.getVelocity() + impulse * a.getInverseMass());
+    b.setVelocity(b.getVelocity() - impulse * b.getInverseMass());
+
+
+
+
+    
+
 
 }

@@ -21,3 +21,8 @@ sf::Vector2f VectorMath::normalize(sf::Vector2f a)
     float length = VectorMath::distance(a, sf::Vector2f(0.0f, 0.0f));
     return sf::Vector2f(a.x / length, a.y / length);
 };
+
+float VectorMath::dotProduct(sf::Vector2f a, sf::Vector2f b)
+{
+    return a.x * b.x + a.y * b.y;
+};

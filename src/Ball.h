@@ -16,7 +16,7 @@ class Ball
         Ball();
         //Constructor with parameters
         Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass,  sf::Color color);
-        Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Vector2f force, sf::Color color);
+        Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Vector2f force, float coefficientOfRestitution, sf::Color color);
         //Destructor
         ~Ball();
         //Update function
@@ -30,14 +30,17 @@ class Ball
         sf::Color getColor();
         sf::Vector2f getForce();
         float getMass();
+        float getInverseMass();
+        float getCoefficientOfRestitution();
 
         //Setters
-        void setPosition(sf::Vector2f position);
-        void setRadius(float radius);
-        void setColor(sf::Color color);
-        void setForce(sf::Vector2f force);
-        void setMass(float mass);
-        void setVelocity(sf::Vector2f velocity);
+        void setPosition(sf::Vector2f _position);
+        void setRadius(float _radius);
+        void setColor(sf::Color _color);
+        void setForce(sf::Vector2f _force);
+        void setMass(float _mass);
+        void setVelocity(sf::Vector2f _velocity);
+        void setCoefficientOfRestitution(float _coefficientOfRestitution);
     
 
         void applyForce(sf::Vector2f force);
@@ -47,12 +50,13 @@ class Ball
 
     //Private variables and functions
     private:
-
+        float coefficientOfRestitution;
         sf::Vector2f position;
         sf::Vector2f velocity;
         sf::Vector2f force;
         float radius;
         float mass;
+        float inverse_mass;
         sf::Color color;
         sf::CircleShape shape;
 
