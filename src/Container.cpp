@@ -9,11 +9,12 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <math.h>
+#include "common.h"
 
 //Constructor
 Container::Container()
 {
-    
+    enableBorders();
 };
 
 //Destructor
@@ -29,6 +30,28 @@ void Container::update(float dt)
         balls_vector[i].update(dt);
     }
     checkCollisions();
+
+    if(bordersEnabled){
+        for (int i = 0; i < balls_vector.size(); i++)
+        {
+            if(balls_vector[i].getPosition().x - balls_vector[i].getRadius() < 0){
+                balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getRadius(), balls_vector[i].getPosition().y));
+                balls_vector[i].setVelocity(sf::Vector2f(-balls_vector[i].getVelocity().x * balls_vector[i].getCoefficientOfRestitution(), balls_vector[i].getVelocity().y));
+            }
+            if(balls_vector[i].getPosition().x + balls_vector[i].getRadius() > WINDOW_WIDTH){
+                balls_vector[i].setPosition(sf::Vector2f(WINDOW_WIDTH - balls_vector[i].getRadius(), balls_vector[i].getPosition().y));
+                balls_vector[i].setVelocity(sf::Vector2f(-balls_vector[i].getVelocity().x * balls_vector[i].getCoefficientOfRestitution(), balls_vector[i].getVelocity().y));
+            }
+            if(balls_vector[i].getPosition().y - balls_vector[i].getRadius() < 0){
+                balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getPosition().x, balls_vector[i].getRadius()));
+                balls_vector[i].setVelocity(sf::Vector2f(balls_vector[i].getVelocity().x, -balls_vector[i].getVelocity().y * balls_vector[i].getCoefficientOfRestitution()));
+            }
+            if(balls_vector[i].getPosition().y + balls_vector[i].getRadius() > WINDOW_HEIGHT){
+                balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getPosition().x, WINDOW_HEIGHT - balls_vector[i].getRadius()));
+                balls_vector[i].setVelocity(sf::Vector2f(balls_vector[i].getVelocity().x, -balls_vector[i].getVelocity().y * balls_vector[i].getCoefficientOfRestitution()));
+            }
+        }
+    }
 };
 
 //draw
@@ -50,6 +73,32 @@ void Container::addBall(Ball ball)
 std::vector<Ball> Container::getBallVector()
 {
     return balls_vector;
+};
+
+bool Container::isBordersEnabled()
+{
+    return bordersEnabled;
+};
+
+//Setters
+void Container::setBordersEnabled(bool _bordersEnabled)
+{
+    bordersEnabled = _bordersEnabled;
+};
+
+void Container::toggleBordersEnabled()
+{
+    bordersEnabled = !bordersEnabled;
+};
+
+void Container::enableBorders()
+{
+    bordersEnabled = true;
+};
+
+void Container::disableBorders()
+{
+    bordersEnabled = false;
 };
 
 //toString function
@@ -76,12 +125,9 @@ bool Container::isColliding(Ball a, Ball b)
 void Container::checkCollisions(){
     for (int i = 0; i < balls_vector.size(); i++)
     {
-        for (int j = 0; j < balls_vector.size(); j++)
+        //can do i+1 to avoid checking the same ball twice
+        for (int j = i+1; j < balls_vector.size(); j++)
         {
-            if(i == j){ //Same ball
-                continue;
-            }
-
             if (isColliding(balls_vector[i], balls_vector[j]))
             {
                 resolveCollision(balls_vector[i], balls_vector[j]);
@@ -104,7 +150,7 @@ void Container::resolveCollision(Ball& a, Ball& b){
     //Equation taken from 
     //https://research.ncl.ac.uk/game/mastersdegree/gametechnologies/physicstutorials/5collisionresponse/Physics%20-%20Collision%20Response.pdf
     float e = a.getCoefficientOfRestitution() * b.getCoefficientOfRestitution();
-    e=0.0f;
+    // e=0.0f;
     sf::Vector2f relativeVelocity = a.getVelocity() - b.getVelocity();
     float j = -(1 + e) * VectorMath::dotProduct(relativeVelocity, collision_normal);
     j /= a.getInverseMass() + b.getInverseMass();

@@ -7,27 +7,49 @@
 #include "Ball.h"
 #include <string>
 #include "Container.h"
+#include "common.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "SFML works!");
 
-    Ball one;
-    Ball two;
-    std::cout << one.toString() << std::endl;
-    // one.SetRadius(10.0f);
-    // std::cout << one.ToString() << std::endl;
-    // one.SetPosition(sf::Vector2f(-5.0f, -5.0f));
+    // Ball one;
+    // Ball two;
+    // // std::cout << one.toString() << std::endl;
+    // // one.SetRadius(10.0f);
+    // // std::cout << one.ToString() << std::endl;
+    // // one.SetPosition(sf::Vector2f(-5.0f, -5.0f));
 
-    one.setPosition(sf::Vector2f(0.0f, 100.0f));
-    two.setPosition(sf::Vector2f(300.0f, 100.0f));
+    // one.setPosition(sf::Vector2f(20.0f, 20.0f));
+    // two.setPosition(sf::Vector2f(250.0f, 20.0f));
 
-    one.setVelocity(sf::Vector2f(50.0f, 0.0f));
-    two.setVelocity(sf::Vector2f(-50.0f, 0.0f));
-    one.setColor(sf::Color::Red);
+    // one.setVelocity(sf::Vector2f(50.0f, 0.0f));
+    // two.setVelocity(sf::Vector2f(-50.0f, 0.0f));
+    // one.setColor(sf::Color::Red);
+    // one.setMass(10.0f);
+    // // one.setCoefficientOfRestitution(0.5f);
     Container container;
-    container.addBall(one);
-    container.addBall(two);
+    // container.addBall(one);
+    // container.addBall(two);
+
+    int num_balls = 10;
+    for (int i = 0; i < num_balls; i++)
+    {
+        for(int ii = 0; ii < num_balls; ii++){
+            Ball new_ball;
+            //create a random float between -100 and 100 for the x and y velocity
+
+            float gap = WINDOW_HEIGHT / (num_balls + 1);
+
+            new_ball.setRadius(5);
+            new_ball.setPosition(sf::Vector2f(gap + gap * i, gap + gap * ii));
+            new_ball.setVelocity(sf::Vector2f(100.0f - (float)rand() / (float)RAND_MAX * 200.0f, 100.0f - (float)rand() / (float)RAND_MAX * 200.0f));
+            new_ball.setColor(sf::Color::Blue);
+            new_ball.setMass(10.0f);
+            container.addBall(new_ball);
+
+        }
+    }
 
     float dt = 0.01f;
     while (window.isOpen())

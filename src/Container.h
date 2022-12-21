@@ -25,13 +25,20 @@ class Container
         void addBall(Ball ball);
         //Getters
         std::vector<Ball> getBallVector();
+        bool isBordersEnabled();
 
+        //Setters
+        void setBordersEnabled(bool _bordersEnabled);
+        void toggleBordersEnabled();
+        void enableBorders();
+        void disableBorders();
         
     
         
         //toString function
         std::string toString();
     private:
+        bool bordersEnabled;
         //vector of balls
         std::vector<Ball> balls_vector;
         
