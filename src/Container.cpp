@@ -26,41 +26,45 @@ Container::~Container()
 //Update function
 void Container::update(float dt)
 {
-    for (int i = 0; i < balls_vector.size(); i++)
+    #pragma omp parallel
     {
-        balls_vector[i].update(dt);
-    }
-    checkCollisions();
+        int id, nthreads;
+        id = omp_get_thread_num();
+        nthreads = omp_get_num_threads();
 
-
-    if(bordersEnabled){
-        #pragma omp parallel
+        for (int i = id; i < balls_vector.size(); i+=nthreads)
         {
-            int id, nthreads;
-            id = omp_get_thread_num();
-            nthreads = omp_get_num_threads();
-            for (int i = id; i < balls_vector.size(); i+=nthreads)
-            {
-                if(balls_vector[i].getPosition().x - balls_vector[i].getRadius() < 0){
-                    balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getRadius(), balls_vector[i].getPosition().y));
-                    balls_vector[i].setVelocity(sf::Vector2f(-balls_vector[i].getVelocity().x * balls_vector[i].getCoefficientOfRestitution(), balls_vector[i].getVelocity().y));
-                }
-                if(balls_vector[i].getPosition().x + balls_vector[i].getRadius() > WINDOW_WIDTH){
-                    balls_vector[i].setPosition(sf::Vector2f(WINDOW_WIDTH - balls_vector[i].getRadius(), balls_vector[i].getPosition().y));
-                    balls_vector[i].setVelocity(sf::Vector2f(-balls_vector[i].getVelocity().x * balls_vector[i].getCoefficientOfRestitution(), balls_vector[i].getVelocity().y));
-                }
-                if(balls_vector[i].getPosition().y - balls_vector[i].getRadius() < 0){
-                    balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getPosition().x, balls_vector[i].getRadius()));
-                    balls_vector[i].setVelocity(sf::Vector2f(balls_vector[i].getVelocity().x, -balls_vector[i].getVelocity().y * balls_vector[i].getCoefficientOfRestitution()));
-                }
-                if(balls_vector[i].getPosition().y + balls_vector[i].getRadius() > WINDOW_HEIGHT){
-                    balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getPosition().x, WINDOW_HEIGHT - balls_vector[i].getRadius()));
-                    balls_vector[i].setVelocity(sf::Vector2f(balls_vector[i].getVelocity().x, -balls_vector[i].getVelocity().y * balls_vector[i].getCoefficientOfRestitution()));
-                }
-            }
+            balls_vector[i].update(dt);
+        }
+        checkCollisions(id, nthreads);
+
+        if(bordersEnabled){
+            bounceBorders(id, nthreads);
         }
     }
 };
+
+void Container::bounceBorders(int id, int nthreads){
+    for (int i = id; i < balls_vector.size(); i+=nthreads)
+    {
+        if(balls_vector[i].getPosition().x - balls_vector[i].getRadius() < 0){
+            balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getRadius(), balls_vector[i].getPosition().y));
+            balls_vector[i].setVelocity(sf::Vector2f(-balls_vector[i].getVelocity().x * balls_vector[i].getCoefficientOfRestitution(), balls_vector[i].getVelocity().y));
+        }
+        if(balls_vector[i].getPosition().x + balls_vector[i].getRadius() > WINDOW_WIDTH){
+            balls_vector[i].setPosition(sf::Vector2f(WINDOW_WIDTH - balls_vector[i].getRadius(), balls_vector[i].getPosition().y));
+            balls_vector[i].setVelocity(sf::Vector2f(-balls_vector[i].getVelocity().x * balls_vector[i].getCoefficientOfRestitution(), balls_vector[i].getVelocity().y));
+        }
+        if(balls_vector[i].getPosition().y - balls_vector[i].getRadius() < 0){
+            balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getPosition().x, balls_vector[i].getRadius()));
+            balls_vector[i].setVelocity(sf::Vector2f(balls_vector[i].getVelocity().x, -balls_vector[i].getVelocity().y * balls_vector[i].getCoefficientOfRestitution()));
+        }
+        if(balls_vector[i].getPosition().y + balls_vector[i].getRadius() > WINDOW_HEIGHT){
+            balls_vector[i].setPosition(sf::Vector2f(balls_vector[i].getPosition().x, WINDOW_HEIGHT - balls_vector[i].getRadius()));
+            balls_vector[i].setVelocity(sf::Vector2f(balls_vector[i].getVelocity().x, -balls_vector[i].getVelocity().y * balls_vector[i].getCoefficientOfRestitution()));
+        }
+    }   
+}
 
 //draw
 void Container::draw(sf::RenderWindow &window)
@@ -130,27 +134,19 @@ bool Container::isColliding(Ball a, Ball b)
 
 };
 
-void Container::checkCollisions(){
-    #pragma omp parallel
+void Container::checkCollisions(int id, int nthreads){
+    for (int i = id; i < balls_vector.size(); i+=nthreads)
     {
-        int id, nthreads;
-        id = omp_get_thread_num();
-        nthreads = omp_get_num_threads();
-        for (int i = id; i < balls_vector.size(); i+=nthreads)
+        //can do i+1 to avoid checking the same ball twice
+        for (int j = i+1; j < balls_vector.size(); j++)
         {
-            //can do i+1 to avoid checking the same ball twice
-            for (int j = i+1; j < balls_vector.size(); j++)
+            if (isColliding(balls_vector[i], balls_vector[j]))
             {
-                if (isColliding(balls_vector[i], balls_vector[j]))
-                {
-                    resolveCollision(balls_vector[i], balls_vector[j]);
+                resolveCollision(balls_vector[i], balls_vector[j]);
 
-                }
             }
-        }   
-    }
-
-            
+        }
+    }          
 }
 
 void Container::resolveCollision(Ball& a, Ball& b){

@@ -43,7 +43,8 @@ class Container
         std::vector<Ball> balls_vector;
         
         //collisions
-        void checkCollisions();
+        void checkCollisions(int id, int nthreads);
+        void bounceBorders(int id, int nthreads);
         bool isColliding(Ball a, Ball b);
         void resolveCollision(Ball &a, Ball &b);
 
