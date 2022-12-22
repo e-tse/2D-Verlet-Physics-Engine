@@ -15,13 +15,14 @@ class Ball
         //Constructor
         Ball();
         //Constructor with parameters
-        Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass,  sf::Color color);
-        Ball(sf::Vector2f position, sf::Vector2f velocity, float radius, float mass, sf::Vector2f force, float coefficientOfRestitution, sf::Color color);
+        Ball(sf::Vector2f position_, sf::color color_)
+
         //Destructor
         ~Ball();
         //Update function
         void update(float dt);
         //Getters
+        
         sf::Vector2f getPosition();
         sf::Vector2f getVelocity();
         float getRadius();
@@ -56,6 +57,7 @@ class Ball
         float mass;
         float inverse_mass;
         sf::Color color;
+        sf::CircleShape shape;
 
 };
 

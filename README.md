@@ -1,4 +1,4 @@
-# 2D-Verlet-Physics-Engine
+# 2D-Verlet-Physics-Engine v1.0
 
 ## By Ethan Tse
 

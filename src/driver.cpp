@@ -96,7 +96,7 @@ int main()
 
 
         window.clear();
-        container.draw(window); 
+        container.render(window); 
         window.display();
 
     }

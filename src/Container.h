@@ -37,6 +37,7 @@ class Container
         
         //toString function
         std::string toString();
+        void render(sf::RenderWindow &window);
     private:
         bool bordersEnabled;
         //vector of balls

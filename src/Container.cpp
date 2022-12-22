@@ -66,14 +66,6 @@ void Container::bounceBorders(int id, int nthreads){
     }   
 }
 
-//draw
-void Container::draw(sf::RenderWindow &window)
-{
-    for (int i = 0; i < balls_vector.size(); i++)
-    {
-        balls_vector[i].draw(window);
-    }
-};
 
 //Add ball function
 void Container::addBall(Ball ball)
@@ -171,10 +163,20 @@ void Container::resolveCollision(Ball& a, Ball& b){
     a.setVelocity(a.getVelocity() + impulse * a.getInverseMass());
     b.setVelocity(b.getVelocity() - impulse * b.getInverseMass());
 
-
-
-
-    
-
-
 }
+
+//Render
+void Container::render(sf::RenderWindow& window){
+
+    sf::CircleShape circle(1.0f);
+    circle.setPointCount(32);
+    circle.setOrigin(1.0f, 1.0f);
+    //iterate through balls and draw them
+    for (int i = 0; i < balls_vector.size(); i++)
+    {
+        circle.setPosition(balls_vector[i].getPosition());
+        circle.setRadius(balls_vector[i].getRadius());
+        circle.setFillColor(balls_vector[i].getColor());
+        window.draw(circle);
+    }
+};
