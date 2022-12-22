@@ -16,9 +16,9 @@ int main()
     // Ball one;
     // Ball two;
     // // std::cout << one.toString() << std::endl;
-    // // one.SetRadius(10.0f);
+    // one.setRadius(20.0f);
     // // std::cout << one.ToString() << std::endl;
-    // // one.SetPosition(sf::Vector2f(-5.0f, -5.0f));
+    // one.setPosition(sf::Vector2f(250.0f, 250.0f));
 
     // one.setPosition(sf::Vector2f(20.0f, 20.0f));
     // two.setPosition(sf::Vector2f(250.0f, 20.0f));
@@ -26,13 +26,14 @@ int main()
     // one.setVelocity(sf::Vector2f(50.0f, 0.0f));
     // two.setVelocity(sf::Vector2f(-50.0f, 0.0f));
     // one.setColor(sf::Color::Red);
-    // one.setMass(10.0f);
+    // one.setMass(100.0f);
+    // one.setForce(sf::Vector2f(0.0f, 9.8f*10000.0f));
     // // one.setCoefficientOfRestitution(0.5f);
     Container container;
     // container.addBall(one);
     // container.addBall(two);
 
-    int num_balls = 10;
+    int num_balls = 20;
     for (int i = 0; i < num_balls; i++)
     {
         for(int ii = 0; ii < num_balls; ii++){

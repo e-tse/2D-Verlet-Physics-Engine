@@ -128,6 +128,8 @@ Physics_Sim: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1
 Physics_Sim: /usr/lib/x86_64-linux-gnu/libsfml-audio.so.2.5.1
 Physics_Sim: /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1
 Physics_Sim: /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1
+Physics_Sim: /usr/lib/gcc/x86_64-linux-gnu/9/libgomp.so
+Physics_Sim: /usr/lib/x86_64-linux-gnu/libpthread.so
 Physics_Sim: CMakeFiles/Physics_Sim.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tsexeth/Documents/physics_sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Physics_Sim"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Physics_Sim.dir/link.txt --verbose=$(VERBOSE)
